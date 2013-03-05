@@ -1,0 +1,3 @@
+To install this library, you just need to do the following:
+
+  $ sudo python setup.py install

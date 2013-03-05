@@ -1,0 +1,132 @@
+2009.09.12
+
+* Added ChangeLog file, populated with all the changes since the beginning of
+the project.
+
+2009.09.11
+
+* Added two examples, one for each type of API that's supported (sync and
+async).
+
+2009.09.07
+
+* Updated setup.py.
+* Updated README.
+* Cleaned up unused imports.
+* Added missing sync client tests.
+* Created common test case for sync and async so that identical unit tests
+don't have to be duplicated but can be reused.
+* Added mood and tags user_post parameters.
+* Updated user_post services parameter to the recent changes in the ping.fm API
+that only support posting to a single service.
+* Updated the async user_post method signature to match the sync version.
+* Added a unit test for bad user_post post methods.
+* Updated async _remote_call to use POST and set the URL-encoded form data in
+the header.
+* Updated async example in README.
+* Updated fake page getter to accept the new parameters being passed for POST
+data.
+* Updated the async unit tests to check for the postdata instead of the URL.
+* Added missing parameter in docstring.
+* Added user_triggers and user_latest to async client.
+* Added a unit test for the message class.
+* Added a get_latest_messages to the response object.
+* Updated the sync client's user_latest method to use the response object's
+method.
+* Removed unnecessary variable declaration in sync client method
+system_services.
+* Adjusted the async system_services method.
+* Deleted remaining non-common methods from base client.
+* Added system_services to async client.
+* Fixed typo in README.
+* Started adding unit tests for sync client.
+* Fixed a bug in the sync client's _remote_call method.
+* Added a new method to the response object that gets service objects for
+services found in the response XML.
+* Updated the sync system_services method to use the new response method.
+* Added a private body check method to the base class.
+* Added user_post to async client and deleted it from the base client.
+* Added user_tpost to async client and deleted it from the base client.
+* Fixed _build_url to support mutli-valued parameters.
+
+2009.09.06
+
+* Added missing unit test file.
+* Added fake client class for use in unit tests.
+* Added unit tests for async client.
+* Removed unnecessary methods from async client.
+* Added unit tests for BaseClient.
+* Moved some utility functionality into its own module (for convenient
+testing).
+* Removed old file header comments.
+* Added unit tests for Response object.
+* Added new attributes to Response object.
+* Added a payload module for use by unit tests.
+* Added a new _build_url method to the base client class.
+* Renamed __remote_call to _remote_call.
+* Implemented a _remote_call for the async class.
+* Started filling out the async client code.
+* Started adding unit tests.
+* Updated README with planned usage of async client and usage of trial for
+running the unit tests.
+* Added a new base client with code from the original sync ping.fm client.
+* Added subpackage-level imports for backwards compatibility.
+* Stubbed an async client class.
+
+2009.04.30
+
+* Fixed set methods to be PEP-8 compliant.
+* Fixed long line.
+* Fixed non-PEP-8 method names in message module.
+* Fixed services method names and spacing in constructor parameters.
+* Fixed parameters and methods in trigger.
+* Updated method calls in pyngfm module.
+* Removed trailing whitespace.
+* Fixed spaces in parameters.
+* Removed leading "*"s from docstrings.
+* Put docstrings inside the methods instead of floating above them.
+* Fixed long lines (over 80 chars).
+* Put all the modules into a pyngfm package.
+* Added a meta.py module.
+* Added a setup.py.
+* Combined the two small service modules into one.
+* Renamed the pyngfm module to client.
+* Renamed the PyngFM class to PingFMClient.
+* Added a try/except example in the README.
+* Renamed __callMethod to __remote_call.
+* Refactored user_*post methods to share common code.
+* Removed PHP artifacts from docstrings.
+* Changed all old-style classes to new-style classes.
+* Added a stub for the response object.
+* Moved Response class into message module.
+* Added try/except import for ElementTree in order to support Python 2.4.
+* Removed XML instantiations in client and moved them to the new response
+object.
+* Added objects for strings in code.
+* Updated client to use new code.
+* Added exception module.
+* Made import explicit.
+* Incremented version number.
+* Changed the remote call to set a response attribute on the client object.
+* Changed the exception to raise in the caller that instantiates the response
+object, not in the response object itself.
+* Changed the base url to be a module-level constant.
+* Fixed the signature of the common parameters private method.
+* Updated README.
+* Added installation instructions.
+* Fixed up the debug parameter to be more flexible and accept Python booleans.
+
+2009.04.02
+
+* Refactoring: callMethod renamed to __callMethod.
+
+2009.04.01
+
+* Initial import.
+* Minor fix to __init__ method of PyngFM.
+* Minor fix to callMethod() method of PyngFM.
+* Added missing parameters to user_post and user_tpost
+
+2009.03.31
+
+* Initial directory structure.

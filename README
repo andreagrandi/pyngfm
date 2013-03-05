@@ -1,0 +1,82 @@
+Posting a message to Ping.fm
+============================
+
+Syncronous Client
+-----------------
+
+    from pyngfm.client import PingFMSyncClient
+    from pyngfm.exception import PingFMResponseError
+
+    # both keys are needed to use this library
+    api_key = "xxx"
+    user_app_key = "yyy"
+    pinger = PingFMSyncClient(api_key, user_app_key)
+    try:
+        pinger.user_post('status','testing Ping.FM Python API :)')
+        print pinger.reponse.status
+    except PingFMResponseError, e:
+        print pinger.reponse.status
+        print e
+
+
+Asyncronous Client
+------------------
+
+Just to keep things fresh, this example exercises a different method:
+
+    from twisted.internet import reactor
+    from pyngfm.client import PingFMAsyncClient
+    from pyngfm.exception import PingFMResponseError
+
+    def check_result(messages):
+        for message in messages:
+            print "title:", message.title
+            print "body:", message.body
+            services = [s.id for s in message.services]
+            print "services:", services, "\n"
+
+    def check_error(error):
+        print error.getErrorMessage()
+
+    def finish(ignored):
+        reactor.stop()
+
+    api_key = "xxx"
+    user_app_key = "yyy"
+
+    pinger = PingFMAsyncClient(api_key, user_app_key)
+    deferred = pinger.user_latest()
+    deferred.addCallback(check_result)
+    deferred.addErrback(check_error)
+    deferred.addCallback(finish)
+
+    reactor.run()
+
+
+Testing the Source Code
+=======================
+
+With the inclusion of Twisted support, unit tests started getting added. Since
+the Twisted test runner (trial) is easy to use with nicely legible output, the
+unit tests are written for use with trial.
+
+To run the unit tests, simply make sure you are in the top-level source
+directory of pyngfm, and execute the following:
+
+    $ trial pyngfm
+
+You can also run unit tests by subpackage:
+
+    $ trial pyngfm/client/
+
+Or module:
+
+    $ trial pyngfm/client/tests/test_async.py
+
+Or even using Python namespace dotted notation:
+
+    $ trial pyngfm.client.tests.test_async
+
+Note that this allows running the unit tests at a finer-grained level:
+
+    $ trial pyngfm.client.tests.test_base.BaseClientTestCase.test_build_url
